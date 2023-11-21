@@ -20,7 +20,7 @@ def appList(area: Rect): ComponentWithValue[MainState] =
       dynamicColumns(area, 3): nextColumn =>
         val maxOffset = math.max(0, appState.get.apps.size - maxApps)
         appState.modifyRefs: (_, _, _, offset) =>
-          slider("appScroll", nextColumn(-sliderSize), 0, maxOffset)(offset)
+          slider("appList" |> "scroll", nextColumn(-sliderSize), 0, maxOffset)(offset)
         val start = appState.get.offset
         val end   = start + maxApps
         rows(nextColumn(maxSize), maxApps, rowPadding): row =>
@@ -30,4 +30,4 @@ def appList(area: Rect): ComponentWithValue[MainState] =
             .foreach:
               case ((app, idx), appArea) =>
                 rectangle(appArea, rowColor(idx))
-                appEntry(appArea, app)(appState)
+                appEntry("appList" |> idx, appArea, app)(appState)
