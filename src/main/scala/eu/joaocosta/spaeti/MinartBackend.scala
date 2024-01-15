@@ -58,23 +58,14 @@ object MinartBackend:
     keyboardInput.events
       .collect { case KeyboardInput.Event.Pressed(key) => key }
       .flatMap {
-        case Digit0 | NumPad0 => "0"
-        case Digit1 | NumPad1 => "1"
-        case Digit2 | NumPad2 => "2"
-        case Digit3 | NumPad3 => "3"
-        case Digit4 | NumPad4 => "4"
-        case Digit5 | NumPad5 => "5"
-        case Digit6 | NumPad6 => "6"
-        case Digit7 | NumPad7 => "7"
-        case Digit8 | NumPad8 => "8"
-        case Digit9 | NumPad9 => "9"
-        case Space            => " "
-        case Backspace        => "\u0008"
-        case Tab | Enter | Escape | Shift | Ctrl | Alt | Meta | Up | Down | Left | Right =>
-          ""
+        case Enter => ""
         case x =>
-          if (keyboardInput.keysDown(Shift)) x.toString.toUpperCase()
-          else x.toString.toLowerCase()
+          x.baseChar
+            .map(char =>
+              if (keyboardInput.keysDown(Shift)) char.toUpper.toString
+              else char.toString
+            )
+            .getOrElse("")
       }
       .mkString
 

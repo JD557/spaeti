@@ -17,5 +17,5 @@ def coursierButton(
   new ComponentWithValue[MainState]:
     def render(appState: Ref[MainState]): Component[Unit] =
       appState.modifyIf(
-        button(id, area, opName)
+        button(id, area, opName)(true).getOrElse(false)
       )(_.runOperation(op(appId)))
