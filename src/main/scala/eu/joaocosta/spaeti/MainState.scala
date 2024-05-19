@@ -13,7 +13,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
   */
 final case class MainState(
     allApps: Future[List[AppStatus]] = CoursierApi.fetchStatus(),
-    runningOperation: Option[Future[_]] = None,
+    runningOperation: Option[Future[?]] = None,
     query: String = "",
     offset: Int = 0
 ):
@@ -32,7 +32,7 @@ final case class MainState(
     *
     *  Once the operation is completed, it also update the app status
     */
-  def runOperation(op: Future[_]): MainState =
+  def runOperation(op: Future[?]): MainState =
     copy(
       allApps = op.transformWith(_ => CoursierApi.fetchStatus()),
       runningOperation = Some(op)

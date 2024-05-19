@@ -81,7 +81,7 @@ object MinartBackend:
         canvas.fillRegion(x, y, w, h, MinartColor(color.r, color.g, color.b))
       case op: RenderOp.DrawText =>
         val font = unscii.withSize(op.font.fontSize)
-        op.asDrawChars().foreach { case RenderOp.DrawChar(Rect(x, y, _, _), color, char) =>
+        op.asDrawChars.foreach { case RenderOp.DrawChar(Rect(x, y, _, _), color, char) =>
           val charSprite =
             font.coloredChar(char, MinartColor(color.r, color.g, color.b))
           canvas
@@ -96,7 +96,7 @@ object MinartBackend:
         canvas.fillRegion(x, y, w, h, MinartColor(color.r, color.g, color.b))
     }
 
-  def run(canvasSettings: Canvas.Settings)(body: InputState => (List[RenderOp], _)): Future[Unit] =
+  def run(canvasSettings: Canvas.Settings)(body: InputState => (List[RenderOp], ?)): Future[Unit] =
     AppLoop
       .statelessRenderLoop { (canvas: Canvas) =>
         val inputState = getInputState(canvas)

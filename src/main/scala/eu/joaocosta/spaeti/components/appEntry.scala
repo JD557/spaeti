@@ -5,7 +5,7 @@ import eu.joaocosta.interim.InterIm.*
 import eu.joaocosta.spaeti.*
 
 /** App entry on a list */
-def appEntry(id: ItemId, area: Rect, app: AppStatus): ComponentWithValue[MainState] =
+def appEntry(id: ItemId, app: AppStatus): ComponentWithValue[MainState] =
   new ComponentWithValue[MainState]:
     val appName: String =
       app.appId.name + app.appId.id
@@ -13,10 +13,14 @@ def appEntry(id: ItemId, area: Rect, app: AppStatus): ComponentWithValue[MainSta
         .map(id => s" ($id)")
         .getOrElse("")
 
-    def render(appState: Ref[MainState]): Component[Unit] =
-      columns(area.shrink(3), 4, 5): column =>
-        text(column(0) ++ column(1), Color(0, 0, 0), appName, Font.default, alignLeft, centerVertically)
+    val installButton   = coursierButton(id |> "install", app.appId, "Install", CoursierApi.install)
+    val updateButton    = coursierButton(id |> "update", app.appId, "Update", CoursierApi.update)
+    val uninstallButton = coursierButton(id |> "uninstall", app.appId, "Uninstall", CoursierApi.uninstall)
+
+    def render(area: Rect, appState: Ref[MainState]): Component[Unit] =
+      columns(area.shrink(3), 4, 5): column ?=>
+        text(column.nextCell() ++ column.nextCell(), Color(0, 0, 0), appName, Font.default, alignLeft, centerVertically)
         if (app.installed)
-          coursierButton(id |> "update", column(2), app.appId, "Update", CoursierApi.update)(appState)
-          coursierButton(id |> "uninstall", column(3), app.appId, "Uninstall", CoursierApi.uninstall)(appState)
-        else coursierButton(id |> "install", column(2), app.appId, "Install", CoursierApi.install)(appState)
+          updateButton(appState)
+          uninstallButton(appState)
+        else installButton(appState)
