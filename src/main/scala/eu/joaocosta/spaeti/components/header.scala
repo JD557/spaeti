@@ -9,7 +9,7 @@ val header: DynamicComponentWithValue[MainState] =
   new DynamicComponentWithValue[MainState]:
     val headerColor = Color(200, 200, 220)
     val textColor   = Color(0, 0, 0)
-    val headerSize = 32
+    val headerSize  = 32
 
     def allocateArea(using allocator: LayoutAllocator.AreaAllocator): Rect =
       allocator.allocate(maxSize, headerSize)

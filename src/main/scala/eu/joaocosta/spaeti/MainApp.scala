@@ -6,8 +6,8 @@ import eu.joaocosta.minart.graphics.Canvas.Settings
 import eu.joaocosta.spaeti.components.*
 
 object MainApp:
-  val uiContext  = new UiContext()
-  val fullArea   = Rect(0, 0, 600, 800)
+  val uiContext = new UiContext()
+  val fullArea  = Rect(0, 0, 600, 800)
 
   val appState = Ref(MainState())
 

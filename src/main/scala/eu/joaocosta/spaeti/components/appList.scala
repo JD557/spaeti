@@ -18,7 +18,7 @@ val appList: DynamicComponentWithValue[MainState] =
       allocator.fill()
 
     def render(area: Rect, appState: Ref[MainState]): Component[Unit] =
-      val maxApps    = area.h / (rowSize + rowPadding)
+      val maxApps = area.h / (rowSize + rowPadding)
       dynamicColumns(area, 3, alignRight): nextColumn ?=>
         val maxOffset = math.max(0, appState.get.apps.size - maxApps)
         appState.modifyRefs: (_, _, _, offset) =>

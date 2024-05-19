@@ -13,8 +13,8 @@ def appEntry(id: ItemId, app: AppStatus): ComponentWithValue[MainState] =
         .map(id => s" ($id)")
         .getOrElse("")
 
-    val installButton = coursierButton(id |> "install", app.appId, "Install", CoursierApi.install)
-    val updateButton = coursierButton(id |> "update", app.appId, "Update", CoursierApi.update)
+    val installButton   = coursierButton(id |> "install", app.appId, "Install", CoursierApi.install)
+    val updateButton    = coursierButton(id |> "update", app.appId, "Update", CoursierApi.update)
     val uninstallButton = coursierButton(id |> "uninstall", app.appId, "Uninstall", CoursierApi.uninstall)
 
     def render(area: Rect, appState: Ref[MainState]): Component[Unit] =
@@ -23,5 +23,4 @@ def appEntry(id: ItemId, app: AppStatus): ComponentWithValue[MainState] =
         if (app.installed)
           updateButton(appState)
           uninstallButton(appState)
-        else
-          installButton(appState)
+        else installButton(appState)

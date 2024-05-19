@@ -7,7 +7,7 @@ import eu.joaocosta.spaeti.*
 /** Loading screen */
 def loading(area: Rect | LayoutAllocator.AreaAllocator, performingOperation: Boolean): Component[Unit] =
   val reservedArea = area match {
-    case r: Rect => r
+    case r: Rect                              => r
     case alloc: LayoutAllocator.AreaAllocator => alloc.fill()
   }
   val dots = "...".take(((System.currentTimeMillis() / 500) % 4).toInt)
