@@ -2,8 +2,8 @@
 
 //> using dep eu.joaocosta::minart::0.6.0
 //> using dep eu.joaocosta::interim::0.2.0
-//> using dep io.get-coursier:coursier_2.13:2.1.10
-//> using dep io.get-coursier:coursier-install_2.13:2.1.10
+//> using dep io.get-coursier:coursier_2.13:2.1.11
+//> using dep io.get-coursier:coursier-install_2.13:2.1.11
 
 //> using test.dep org.scalameta::munit::1.0.1
 
