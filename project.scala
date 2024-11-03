@@ -1,6 +1,6 @@
 //> using scala 3.5.2
 
-//> using dep eu.joaocosta::minart::0.6.1
+//> using dep eu.joaocosta::minart::0.6.2
 //> using dep eu.joaocosta::interim::0.2.0
 //> using dep io.get-coursier:coursier_2.13:2.1.14
 //> using dep io.get-coursier:coursier-install_2.13:2.1.14
