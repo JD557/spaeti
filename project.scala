@@ -5,7 +5,7 @@
 //> using dep io.get-coursier:coursier_2.13:2.1.23
 //> using dep io.get-coursier:coursier-install_2.13:2.1.23
 
-//> using test.dep org.scalameta::munit::1.0.3
+//> using test.dep org.scalameta::munit::1.0.4
 
 //> using resource-dir src/main/resources/
 //> using option -deprecation
