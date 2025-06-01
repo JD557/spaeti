@@ -10,7 +10,7 @@ def loading(area: Rect | LayoutAllocator.AreaAllocator, performingOperation: Boo
     case r: Rect                              => r
     case alloc: LayoutAllocator.AreaAllocator => alloc.fill()
   }
-  val dots = "...".take(((System.currentTimeMillis() / 500) % 4).toInt)
+  val dots    = "...".take(((System.currentTimeMillis() / 500) % 4).toInt)
   val message =
     if (performingOperation) "Performing operation, please wait" + dots
     else "Loading data, please wait" + dots
