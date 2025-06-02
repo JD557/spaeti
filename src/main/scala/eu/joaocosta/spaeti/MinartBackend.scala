@@ -23,7 +23,7 @@ object MinartBackend:
   ) extends MinartFont:
     private val spriteSheet =
       SpriteSheet(Image.loadBmpImage(Resource(file)).get, width, height)
-    def charWidth(char: Char): Int = width
+    def charWidth(char: Char): Int                               = width
     def coloredChar(char: Char, color: MinartColor): SurfaceView =
       spriteSheet.getSprite(char.toInt - fontFirstChar.toInt).map {
         case MinartColor(255, 255, 255) => color
@@ -31,7 +31,7 @@ object MinartBackend:
       }
 
   case class BitmapFontPack(fonts: List[BitmapFont]):
-    val sortedFonts = fonts.sortBy(_.height)
+    val sortedFonts                         = fonts.sortBy(_.height)
     def withSize(fontSize: Int): MinartFont =
       val baseFont = sortedFonts
         .filter(_.height <= fontSize)
@@ -41,7 +41,7 @@ object MinartBackend:
       else
         val scale = fontSize / baseFont.height.toDouble
         new MinartFont:
-          def charWidth(char: Char): Int = (baseFont.width * scale).toInt
+          def charWidth(char: Char): Int                               = (baseFont.width * scale).toInt
           def coloredChar(char: Char, color: MinartColor): SurfaceView =
             baseFont.coloredChar(char, color).scale(scale)
 
@@ -59,7 +59,7 @@ object MinartBackend:
       .collect { case KeyboardInput.Event.Pressed(key) => key }
       .flatMap {
         case Enter => ""
-        case x =>
+        case x     =>
           x.baseChar
             .map(char =>
               if (keyboardInput.keysDown(Shift)) char.toUpper.toString
