@@ -1,4 +1,4 @@
-//> using scala 3.7.3
+//> using scala 3.7.4
 
 //> using dep eu.joaocosta::minart::0.6.5
 //> using dep eu.joaocosta::interim::0.2.0
